@@ -24,8 +24,8 @@ Apague tudo que está abaixo dessa linha e escreva seu post --->
 - [4️⃣ Crie um post vazio](#4️⃣-Crie-um-post-vazio)
 - [5️⃣ ID do post](#5️⃣-ID-do-post)
 - [6️⃣ Escreva o post](#6️⃣-Escreva-o-post)
-- [❗️ Informações importantes](#❗️-Informações-importantes)
-- [❓ Preciso de ajuda](#❓-Preciso-de-ajuda)
+- [❗️ Informações importantes](#-Informações-importantes)
+- [❓ Preciso de ajuda](#-Preciso-de-ajuda)
 
 ---
 ## 1️⃣ Template
