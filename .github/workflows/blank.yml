@@ -15,7 +15,7 @@ jobs:
       uses: actions/checkout@v1
     - name: Configurar Node.js
       uses: actions/setup-node@v1.1.0
-    - name: Instalar a dependência dev.to
+    - name: Instalar a dependência dev-to-git
       run: npm install --production
     - name: Publicar artigo
       env:
