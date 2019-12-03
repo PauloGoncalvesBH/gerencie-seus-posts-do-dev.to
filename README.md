@@ -1,69 +1,114 @@
-# One way publishing of your blog posts from a git repo to dev.to
+---
+title: "Título do post - obrigatório"
+published: false
+description:
+tags: tag1, tag2, ptbr, opcional
+canonical_url:
+cover_image:
+series:
+---
 
-## First, what is dev.to?
+<!--- Acima está o cabeçalho, com as informações do seu post, edite-as de acordo com sua necessidade. Para saber mais: https://dev.to/p/editor_guide
+Apague tudo que está abaixo dessa linha e escreva seu post --->
 
-https://dev.to is a free and open source blogging platform for developers.
+<div align="center">
+  <img alt="logo do DEV e do Github juntos" src="https://user-images.githubusercontent.com/29241659/69934759-aa785080-14b1-11ea-9cca-4ecb928b5bb9.png" width="470px">
+</div>
 
-> dev.to (or just DEV) is a platform where software developers write articles, take part in discussions, and build their professional profiles. We value supportive and constructive dialogue in the pursuit of great code and career growth for all members. The ecosystem spans from beginner to advanced developers, and all are welcome to find their place within our community.
+# Gerencie seus post do dev.to através do Github
 
-## Why would I want to put all my blog posts on a git repo?
+## Sumário
+- [1️⃣ Template](#1️⃣-Template)
+- [2️⃣ Ajuste o package.json](#2️⃣-Ajuste-o-package.json)
+- [3️⃣ Dev-to-git token](#3️⃣-Dev-to-git-token)
+- [4️⃣ Crie um post vazio](#4️⃣-Crie-um-post-vazio)
+- [5️⃣ ID do post](#5️⃣-ID-do-post)
+- [6️⃣ Escreva o post](#6️⃣-Escreva-o-post)
+- [❗️ Informações importantes](#❗️-Informações-importantes)
+- [❓ Preciso de ajuda](#❓-Preciso-de-ajuda)
 
-- Don't be afraid to mess up with one of your articles while editing it
-- Same good practices as when you're developing (format, commits, saving history, compare, etc)
-- Use prettier to format the markdown and all the code
-- Let people contribute to your article by creating a PR against it (tired of comments going sideways because of some typos? Just let people know they can make a PR at the end of your blog post)
-- Create code examples close to your blog post and make sure they're correct thanks to [Embedme](https://github.com/zakhenry/embedme) (_\*1_)
+---
+## 1️⃣ Template
 
-_\*1: Embedme allows you to write code in actual files rather than your readme, and then from your Readme to make sure that your examples are matching those files._
+Clique no botão `Use this template` no topo desse repositório para que seja gerado um repositório na sua conta com os mesmos arquivos desse modelo.
 
-If you prefer not to use Prettier or Embed me, you can do so by simply removing them but I think it's a nice thing to have!
+## 2️⃣ Ajuste o package.json
 
-## How do I choose which files I want to publish?
+É preciso ajustar os valores abaixo para que a biblioteca [dev-to-git](https://www.npmjs.com/package/dev-to-git) consiga enviar as imagens do diretório `images/` corretamente.
 
-There's a `dev-to-git.json` file where you can define an array of blog posts, e.g.
+Vá no arquivo [package.json](./package.json) e altere o campo `url` informando os seus dados.
+```
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SEU-USUARIO/SEU-REPOSITORIO.git"
+  }
+```
+
+## 3️⃣ Dev-to-git token
+
+É preciso passar um token para o Github para que o _dev-to-git_ tenha acesso à sua conta, atualizando os seus posts.
+
+Acesse a [página de configuração da conta do dev.to](https://dev.to/settings/account) para gerar um token a ser utilizado.
+
+Informe uma descrição para o token, clique em `Generate APi Key` e copie o token gerado.
+
+<div align="center">
+  <img alt="Token" src="https://user-images.githubusercontent.com/29241659/70006793-283d6a00-154d-11ea-9112-1190a1271cb5.jpg" width="650px">
+</div>
+
+Em seguida, no seu repositório do Github, vá em `Settings > Secrets` e clique em `Add a new secret`. Cadastre um segredo com o nome `DEV_TO_GIT_TOKEN` e inserindo no valor o token copiado anteriormente.
+
+<div align="center">
+  <img alt="Secrets" src="https://user-images.githubusercontent.com/29241659/70007268-8e76bc80-154e-11ea-983e-72e76cde737c.jpg" width="650px">
+</div>
+
+**NUNCA compartilhe o token gerado**
+
+## 4️⃣ Crie um post vazio
+
+Essa etapa é necessária pois _dev-to-git_ não cria um novo post, apenas atualiza post existente.
+
+Vá no dev.to, clique em `WRITE A POST`, preencha o título e o conteúdo do post com qualquer texto e clique em `SAVE DRAFT` para salvar como rascunho.
+
+## 5️⃣ ID do post
+
+Agora é preciso informar o ID dessa página para que seja possível atualizar a mesma.
+
+Com o post aberto, envie os comandos `CTRL + SHIFT + C` para abrir a tela de desenvolvedor. Vá na aba `Console` e envie o comando abaixo para que capture o ID do post.
+```js
+$('div[data-article-id]').getAttribute('data-article-id')
+```
+
+![print do console do navegador](https://user-images.githubusercontent.com/29241659/70012164-638e6780-1552-11ea-8b49-9676491cb587.jpg)
+
+Com o ID copiado, vá no arquivo [dev-to-git.json](./dev-to-git.json) e altere o valor do campo `id` com o do seu post.
 
 ```json
 [
   {
-    "id": 12345,
-    "relativePathToArticle": "./blog-posts/name-of-your-blog-post/name-of-your-blog-post.md"
+    "id": 214298,
+    "relativePathToArticle": "./README.md"
   }
 ]
 ```
 
-## How can I find the ID of my blog post on dev.to?
+## 6️⃣ Escreva o post
 
-This repository is made to **edit** a blog post. Whether it's published or just a draft, you **have to create it** on dev.to directly. Unfortunately, dev.to does not display the ID of the blog post on the page. So once it's created, you can open your browser console and paste the following code to retrieve the blog post ID:  
-`$('div[data-article-id]').getAttribute('data-article-id')`
+Pronto 🎉, você já possui tudo configurado para escrever o seu post no `README.md`.
 
-## How do I configure every blog post individually?
+---
+## ❗️ Informações importantes
 
-A blog post has to have a [**front matter**](https://dev.to/p/editor_guide) header. You can find an example in this repository here: https://github.com/maxime1992/dev.to/blob/master/blog-posts/name-of-your-blog-post/name-of-your-blog-post.md
+- O `README.md` é composto de 2 seções:
+    1. **Cabeçalho**, com informações sobre o seu post, como título, se deve ser publicado ou não e tags. _Para saber mais, veja a seção **Front Matter** do [Guia do editor](https://dev.to/p/editor_guide)._
+    2. **Post em si**, que deve ser escrito abaixo do cabeçalho.
 
-Simple and from there you have control over the following properties: `title`, `published`, `cover_image`, `description`, `tags`, `series` and `canonical_url`.
+- Caso vá colocar imagem que não seja através de URL, armazene ela no diretório [images](./images) e referencie no seu post.
 
-## How do I add images to my blog posts?
+- O build de atualização do post é executado apenas se o commit for feito na branch `master`. _Para saber mais, veja o arquivo de [configuração do build](./.github/workflows/blank.yml)._
 
-Instead of uploading them manually on dev.to, simply put them within your git repo and within the blog post use a relative link. Here's an example: `The following is an image: ![alt text](./assets/image.png 'Title image')`.
+---
 
-If you've got some plugin to preview your markdown from your IDE, the images will be correctly displayed. Then, on CI, right before they're published, the link will be updated to match the raw file.
+## ❓ Preciso de ajuda
 
-## How to setup CI for auto deploying the blog posts?
-
-If you want to use Github and Travis, a `.travis.yml` file has been already prepared for you.
-
-First, you have to activate the repository on Travis: https://travis-ci.org/account/repositories
-
-Then, you have to create a token on your dev.to account: https://dev.to/settings/account and set an environment variable on Travis called `DEV_TO_GIT_TOKEN` that will have the newly created token as value.
-
-## README template
-
-The following is simply a template that you may want to use for your own version of that repository.
-
-# \<YOUR NAME\>'s blog source
-
-https://dev.to/\<YOUR DEV.TO NICKNAME\>
-
-## Blog posts
-
-- [\<BLOG POST NAME\>](https://dev.to/\<BLOG POST LINK\>)
+Está com algum problema e precisa de ajuda? Abra uma [issue aqui](https://github.com/PauloGoncalvesBH/gerencie-seus-posts-do-dev.to/issues) detalhando a sua situação e irei te ajudar.
