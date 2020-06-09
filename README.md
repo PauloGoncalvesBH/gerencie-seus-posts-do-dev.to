@@ -37,7 +37,7 @@ Clique no botão `Use this template` no topo desse repositório para que seja ge
 É preciso ajustar os valores abaixo para que a biblioteca [dev-to-git](https://www.npmjs.com/package/dev-to-git) consiga enviar as imagens do diretório `images/` corretamente.
 
 Vá no arquivo [package.json](./package.json) e altere o campo `url` informando os seus dados.
-```
+```json
   "repository": {
     "type": "git",
     "url": "https://github.com/SEU-USUARIO/SEU-REPOSITORIO.git"
@@ -74,7 +74,7 @@ Vá no dev.to, clique em `WRITE A POST`, preencha o título e o conteúdo do pos
 
 Agora é preciso informar o ID dessa página para que seja possível atualizar a mesma.
 
-Com o post aberto, envie os comandos `CTRL + SHIFT + C` para abrir a tela de desenvolvedor. Vá na aba `Console` e envie o comando abaixo para que capture o ID do post.
+Com o post aberto, envie o comando `F12` para abrir a tela de desenvolvedor. Vá na aba `Console` e envie o comando abaixo para que capture o ID do post.
 ```js
 $('div[data-article-id]').getAttribute('data-article-id')
 ```
@@ -94,7 +94,7 @@ Com o ID copiado, vá no arquivo [dev-to-git.json](./dev-to-git.json) e altere o
 
 ## 6️⃣ Escreva o post
 
-Pronto 🎉, você já possui tudo configurado para escrever o seu post no `README.md`.
+Pronto 🎉, você já possui tudo configurado para escrever o seu post. Toda vez que atualizar o `README` o post será atualizado no dev.to.
 
 ---
 ## ❗️ Informações importantes
