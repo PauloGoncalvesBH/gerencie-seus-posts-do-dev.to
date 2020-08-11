@@ -2,7 +2,7 @@
 title: "Título do post - obrigatório"
 published: false
 description:
-tags: tag1, tag2, ptbr, opcional
+tags: tag1, ptbr, opcional
 canonical_url:
 cover_image:
 series:
