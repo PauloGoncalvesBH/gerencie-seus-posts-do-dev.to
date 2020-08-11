@@ -1,9 +1,10 @@
 name: Publicar artigo no dev.to
 
 on:
- push:
-   branches: 
-     - master
+  workflow_dispatch:
+  push:
+    branches: 
+      - trunk
 
 jobs:
   publicar-artigo:
